@@ -1,8 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using PricingABasket.Items;
 
-namespace PricingABasket.items
+namespace PricingABasket.Items
 {
     public class ItemFactory : IItemFactory
     {

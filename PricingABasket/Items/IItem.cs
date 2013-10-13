@@ -1,4 +1,4 @@
-﻿namespace PricingABasket.items
+﻿namespace PricingABasket.Items
 {
     public interface IItem
     {

@@ -1,12 +1,13 @@
-using PricingABasket.Offers;
-namespace PricingABasket.Pricing
+using PricingABasket.Items.Offers;
+
+namespace PricingABasket.Calculator
 {
-    public class OfferAndSaving
+    public class OfferSaving
     {
         private readonly IOffer _offer;
         public decimal Saving { get; private set; }
         
-        private OfferAndSaving(IOffer offer, decimal saving)
+        public OfferSaving(IOffer offer, decimal saving)
         {
             _offer = offer;
             Saving = saving;

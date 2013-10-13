@@ -49,11 +49,13 @@
     <Compile Include="Items\IItemFactory.cs" />
     <Compile Include="Items\ItemFactory.cs" />
     <Compile Include="Items\Milk.cs" />
+    <Compile Include="Items\Offers\AppleTenPercentDiscount.cs" />
+    <Compile Include="Items\Offers\HalfPriceLoafWithTwoTinsOfSoup.cs" />
+    <Compile Include="Items\Offers\IOffer.cs" />
     <Compile Include="Items\Soup.cs" />
-    <Compile Include="Offers\IOffer.cs" />
-    <Compile Include="Pricing\OfferAndSaving.cs" />
-    <Compile Include="Pricing\PriceCalculator.cs" />
-    <Compile Include="Pricing\PricerResult.cs" />
+    <Compile Include="Calculator\OfferSaving.cs" />
+    <Compile Include="Calculator\PriceCalculator.cs" />
+    <Compile Include="Calculator\CalculatorResult.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

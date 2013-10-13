@@ -1,15 +1,14 @@
 using System.Collections.Generic;
-using PricingABasket.Offers;
 
-namespace PricingABasket.Pricing
+namespace PricingABasket.Calculator
 {
-    public class PricerResult
+    public class CalculatorResult
     {
         public decimal SubTotal { get; private set; }
-        public IEnumerable<OfferAndSaving> ApplicableOffers { get; private set; }
+        public IEnumerable<OfferSaving> ApplicableOffers { get; private set; }
         public decimal Total { get; private set; }
 
-        public PricerResult(decimal subTotal, IEnumerable<OfferAndSaving> applicableOffers, decimal total)
+        public CalculatorResult(decimal subTotal, IEnumerable<OfferSaving> applicableOffers, decimal total)
         {
             SubTotal = subTotal;
             ApplicableOffers = applicableOffers;

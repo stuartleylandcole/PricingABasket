@@ -1,11 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
+using PricingABasket.Calculator;
 using PricingABasket.Items;
-using PricingABasket.Offers;
-using PricingABasket.Pricing;
-using PricingABasket.items;
+using PricingABasket.Items.Offers;
 
 namespace PricingABasket
 {
@@ -18,17 +16,32 @@ namespace PricingABasket
                 var itemFactory = new ItemFactory();
 
                 var items = ParseItems(itemFactory, args);
-                var offers = GetAllOffers();
-                var calculator = new PriceCalculator(items, offers);
-                var result = calculator.CalculateTotal();
+                Console.WriteLine("Items:");
+                foreach (var item in items)
+                {
+                    Console.WriteLine(item.Description + " - £" + item.Price.ToString("F") + " per " + item.Unit);
+                }
 
-                Console.WriteLine("Subtotal: £" + result.SubTotal);
+                Console.WriteLine();
+
+                var offers = GetAllOffers();
+                Console.WriteLine("Offers");
+                foreach (var offer in offers)
+                {
+                    Console.WriteLine(offer.Description);
+                }
+
+                var calculator = new PriceCalculator(items, offers);
+                var result = calculator.Calculate();
+
+                Console.WriteLine();
+                Console.WriteLine("Subtotal: £" + result.SubTotal.ToString("F"));
 
                 if (result.ApplicableOffers.Any())
                 {
                     foreach (var offer in result.ApplicableOffers)
                     {
-                        Console.WriteLine(offer.Description + ": " + offer.Saving);
+                        Console.WriteLine(offer.Description + ": -£" + offer.Saving.ToString("F"));
                     }
                 }
                 else
@@ -36,7 +49,7 @@ namespace PricingABasket
                     Console.WriteLine("(No offers available)");
                 }
 
-                Console.WriteLine("Total: £" + result.Total);
+                Console.WriteLine("Total: £" + result.Total.ToString("F"));
             }
             catch (Exception e)
             {
@@ -46,7 +59,7 @@ namespace PricingABasket
             Console.ReadLine();
         }
 
-        private static IEnumerable<IItem> ParseItems(IItemFactory itemFactory, IEnumerable<string> args)
+        private static IList<IItem> ParseItems(IItemFactory itemFactory, IEnumerable<string> args)
         {
             var items = new List<IItem>();
             foreach (var description in args)
@@ -57,9 +70,13 @@ namespace PricingABasket
             return items;
         }
 
-        private static IEnumerable<IOffer> GetAllOffers()
+        private static IList<IOffer> GetAllOffers()
         {
-            return new List<IOffer>();
+            return new List<IOffer>
+                {
+                    new AppleTenPercentDiscount(),
+                    new HalfPriceLoafWithTwoTinsOfSoup()
+                };
         }
     }
 }
